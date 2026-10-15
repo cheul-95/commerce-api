@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: commerce-api
+
+  datasource:
+    url: jdbc:mysql://localhost:3307/commerce?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: commerce
+    password: commerce
+
+  jpa:
+    hibernate:
+      ddl-auto: update        # 개발용. 운영 배포 땐 validate + 마이그레이션 도구로 변경
+    open-in-view: false
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 100
+
+  sql:
+    init:
+      mode: always            # data.sql 로 샘플 상품 넣기
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+logging:
+  level:
+    org.hibernate.SQL: debug  # 실행 쿼리 확인 (N+1 체크용)
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
